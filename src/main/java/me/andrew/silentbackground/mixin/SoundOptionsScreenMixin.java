@@ -2,6 +2,7 @@ package me.andrew.silentbackground.mixin;
 
 import me.andrew.silentbackground.accessor.ScreenAccessor;
 import me.andrew.silentbackground.gui.BackgroundSoundOptionsScreen;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
@@ -61,8 +62,9 @@ public abstract class SoundOptionsScreenMixin extends GameOptionsScreen {
             }
         }
 
-        this.addDrawableChild(new ButtonWidget(x, y, 150, 20, new TranslatableText("options.backgroundSounds"), (button) -> {
-            this.client.openScreen(new BackgroundSoundOptionsScreen(this, this.gameOptions));
+        this.addDrawableChild(new ButtonWidget(x, y - 10, 150, 20, new TranslatableText("options.backgroundSounds"), (button) -> {
+
+            this.client.setScreen(new BackgroundSoundOptionsScreen(this, this.gameOptions));
         }));
     }
 }
